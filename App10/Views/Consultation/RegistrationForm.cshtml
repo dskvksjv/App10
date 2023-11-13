@@ -1,0 +1,34 @@
+﻿@model ConsultationFormModel
+<link rel="stylesheet" href="~/css/Form.css" />
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FullName)
+        @Html.TextBoxFor(model => model.FullName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email)
+        @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ConsultationDate)
+        @Html.TextBoxFor(model => model.ConsultationDate, "{0:yyyy-MM-ddTHH:mm}", new { @class = "form-control", type = "datetime-local" })
+        @Html.ValidationMessageFor(model => model.ConsultationDate, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.SelectedProduct)
+        @Html.DropDownListFor(model => model.SelectedProduct, new SelectList(new[] { "JavaScript", "C#", "Java", "Python", "Основи" }), "Оберіть предмет для консультації", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.SelectedProduct, "", new { @class = "text-danger" })
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Надіслати форму</button>
+}
